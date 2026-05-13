@@ -1,23 +1,13 @@
 import java.sql.*;
 
 public class DBConnection {
-
-    // Added the method signature back in
     public static Connection getConnection() {
         try {
-            // This line connects to your XAMPP MySQL
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/lsms_db",
-                    "root",
-                    ""
-            );
-
-            System.out.println("Database Connected successfully!");
-            return conn;
-
-        } catch (Exception e) {
-            System.out.println("Connection Failed! Check if XAMPP is running and 'lsms_db' exists.");
-            e.printStackTrace();
+            // Check: XAMPP MySQL must be green/running!
+            String url = "jdbc:mysql://localhost:3306/lsms_db"; 
+            return DriverManager.getConnection(url, "root", "");
+        } catch (SQLException e) {
+            System.out.println("DB Error: " + e.getMessage());
             return null;
         }
     }
